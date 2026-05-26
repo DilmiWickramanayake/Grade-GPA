@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard — GPA Tracker{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h2>Dashboard</h2>
+  <a href="{{ url_for('students.add_student') }}" class="btn btn-primary">+ Add Student</a>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-number">{{ total_students }}</div>
+    <div class="stat-label">Total Students</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">{{ avg_gpa }}</div>
+    <div class="stat-label">Average GPA</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">{{ high_gpa }}</div>
+    <div class="stat-label">Students with GPA ≥ 3.5</div>
+  </div>
+</div>
+
+{% if top_students %}
+<h3>Top Students</h3>
+<table class="table">
+  <thead>
+    <tr><th>#</th><th>Name</th><th>Student ID</th><th>GPA</th><th></th></tr>
+  </thead>
+  <tbody>
+    {% for student in top_students %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ student.full_name }}</td>
+      <td>{{ student.student_id }}</td>
+      <td>
+        <span class="gpa-badge gpa-{{ 'high' if student.gpa >= 3.5 else 'mid' if student.gpa >= 2.0 else 'low' }}">
+          {{ student.gpa }}
+        </span>
+      </td>
+      <td><a href="{{ url_for('students.detail', student_id=student.id) }}" class="btn btn-sm btn-secondary">View</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="empty-state-box">
+  <p>No students yet.</p>
+  <a href="{{ url_for('students.add_student') }}" class="btn btn-primary" style="margin-top:.75rem">Add your first student</a>
+</div>
+{% endif %}
+{% endblock %}

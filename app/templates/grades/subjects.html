@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Subjects — GPA Tracker{% endblock %}
+{% block content %}
+<h2>Subjects</h2>
+<div class="layout-two-col">
+  <div>
+    <h3>Add Subject</h3>
+    <form method="POST" class="form-card">
+      <div class="form-group">
+        <label for="code">Subject Code</label>
+        <input type="text" id="code" name="code" class="form-control" placeholder="e.g. CS101" required>
+      </div>
+      <div class="form-group">
+        <label for="name">Subject Name</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="e.g. Introduction to CS" required>
+      </div>
+      <div class="form-group">
+        <label for="credit_hours">Credit Hours</label>
+        <select id="credit_hours" name="credit_hours" class="form-control">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3" selected>3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Subject</button>
+    </form>
+  </div>
+  <div>
+    <h3>All Subjects</h3>
+    {% if subjects %}
+    <table class="table">
+      <thead><tr><th>Code</th><th>Name</th><th>Credits</th></tr></thead>
+      <tbody>
+        {% for subject in subjects %}
+        <tr><td>{{ subject.code }}</td><td>{{ subject.name }}</td><td>{{ subject.credit_hours }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="empty-state">No subjects added yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

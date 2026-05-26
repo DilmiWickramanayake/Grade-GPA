@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}GPA Tracker{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  {% if current_user.is_authenticated %}
+  <nav class="navbar">
+    <div class="nav-brand">GPA Tracker</div>
+    <div class="nav-links">
+      <a href="{{ url_for('main.index') }}">Dashboard</a>
+      <a href="{{ url_for('students.list_students') }}">Students</a>
+      <a href="{{ url_for('grades.add_grade') }}">Add Grade</a>
+      <a href="{{ url_for('grades.subjects') }}">Subjects</a>
+      <a href="{{ url_for('auth.logout') }}" class="nav-logout">{{ current_user.username }} · Logout</a>
+    </div>
+  </nav>
+  {% endif %}
+
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
