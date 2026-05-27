@@ -48,3 +48,6 @@
 - What I changed before approving: N/A
 - Verification: When I insert grade does it change (lower grade lowers GPA, Higher grade, increases GPA)
 - One thing I learned: I learned how to insert options for user to choose from. 
+
+## AI Workflow
+I used Claude for most of this project because Claude does a great job at following instructions and creating webpages based on my instructions. For planning, I decided to use ChatGPT to help me understand what tasks I should make and what steps I should take while creating a grading system. For executing the program and idea, I chose Claude because it is able to create lots of code that most of the time works. For reviewing the code, I used Copilot because Copilot is great at looking into snippets of code and finding out the bugs. Copilot is great at making snippets of code, but Claude is better at making big projects like these from scratch. Claude also tests the code for me, while Copilot asks whether or not to keep or undo code. For planning out the project I was about to use Claude, but then I used ChatGPT because I was able to understand the steps that ChatGPT gave me and allowed that to be the outline of my program. 
